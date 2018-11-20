@@ -1,0 +1,197 @@
+version: '2'
+
+services:
+  peer0.stj.smartsign.app:
+    container_name: peer0.stj.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.stj.smartsign.app
+      - CORE_PEER_ADDRESS=peer0.stj.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.stj.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.stj.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=STJOrgMSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/stj.smartsign.app/peers/peer0.stj.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/stj.smartsign.app/peers/peer0.stj.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer0.stj.smartsign.app:/var/hyperledger/production
+    ports:
+      - 7051:7051
+      - 7053:7053
+
+  peer1.stj.smartsign.app:
+    container_name: peer1.stj.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.stj.smartsign.app
+      - CORE_PEER_ADDRESS=peer1.stj.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.stj.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.stj.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=STJOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_stf1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/stj.smartsign.app/peers/peer1.stj.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/stj.smartsign.app/peers/peer1.stj.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer1.stj.smartsign.app:/var/hyperledger/production
+    ports:
+      - 8051:7051
+      - 8053:7053
+
+  peer0.tj-ba.smartsign.app:
+    container_name: peer0.tj-ba.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.tj-ba.smartsign.app
+      - CORE_PEER_ADDRESS=peer0.tj-ba.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.tj-ba.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.tj-ba.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJBAOrgMSP
+       #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjba0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-ba.smartsign.app/peers/peer0.tj-ba.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-ba.smartsign.app/peers/peer0.tj-ba.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer0.tj-ba.smartsign.app:/var/hyperledger/production
+    ports:
+      - 9051:7051
+      - 9053:7053
+
+  peer1.tj-ba.smartsign.app:
+    container_name: peer1.tj-ba.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.tj-ba.smartsign.app
+      - CORE_PEER_ADDRESS=peer1.tj-ba.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.tj-ba.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.tj-ba.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJBAOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjba1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-ba.smartsign.app/peers/peer1.tj-ba.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-ba.smartsign.app/peers/peer1.tj-ba.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer1.tj-ba.smartsign.app:/var/hyperledger/production
+    ports:
+      - 10051:7051
+      - 10053:7053
+
+  peer0.tj-se.smartsign.app:
+    container_name: peer0.tj-se.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.tj-se.smartsign.app
+      - CORE_PEER_ADDRESS=peer0.tj-se.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.tj-se.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.tj-se.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJSEOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjse0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-se.smartsign.app/peers/peer0.tj-se.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-se.smartsign.app/peers/peer0.tj-se.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer0.tj-se.smartsign.app:/var/hyperledger/production
+    ports:
+      - 11051:7051
+      - 11053:7053
+
+  peer1.tj-se.smartsign.app:
+    container_name: peer1.tj-se.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.tj-se.smartsign.app
+      - CORE_PEER_ADDRESS=peer1.tj-se.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.tj-se.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.tj-se.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJSEOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjse1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-se.smartsign.app/peers/peer1.tj-se.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-se.smartsign.app/peers/peer1.tj-se.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer1.tj-se.smartsign.app:/var/hyperledger/production
+    ports:
+      - 12051:7051
+      - 12053:7053
+
+  peer0.tj-sp.smartsign.app:
+    container_name: peer0.tj-sp.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.tj-sp.smartsign.app
+      - CORE_PEER_ADDRESS=peer0.tj-sp.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.tj-sp.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.tj-sp.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJSPOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjsp0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-sp.smartsign.app/peers/peer0.tj-sp.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-sp.smartsign.app/peers/peer0.tj-sp.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer0.tj-sp.smartsign.app:/var/hyperledger/production
+    ports:
+      - 13051:7051
+      - 13053:7053
+
+  peer1.tj-sp.smartsign.app:
+    container_name: peer1.tj-sp.smartsign.app
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.tj-sp.smartsign.app
+      - CORE_PEER_ADDRESS=peer1.tj-sp.smartsign.app:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.tj-sp.smartsign.app:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.tj-sp.smartsign.app:7051
+      - CORE_PEER_LOCALMSPID=TJSPOrgMSP
+      #COUCHDB
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb_tjsp1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    volumes:
+      - /var/run/:/host/var/run/
+      - ../artifacts/crypto-config/peerOrganizations/tj-sp.smartsign.app/peers/peer1.tj-sp.smartsign.app/msp:/etc/hyperledger/fabric/msp
+      - ../artifacts/crypto-config/peerOrganizations/tj-sp.smartsign.app/peers/peer1.tj-sp.smartsign.app/tls:/etc/hyperledger/fabric/tls
+      - peer1.tj-sp.smartsign.app:/var/hyperledger/production
+    ports:
+      - 14051:7051
+      - 14053:7053

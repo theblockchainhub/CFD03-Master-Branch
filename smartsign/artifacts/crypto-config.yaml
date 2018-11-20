@@ -1,0 +1,73 @@
+OrdererOrgs:
+  - Name: OrderingService
+    Domain: smartsign.app
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: STJ
+    Domain: stj.smartsign.app
+    # ---------------------------------------------------------------------------
+    # "CA"
+    # ---------------------------------------------------------------------------
+    # Uncomment this section to enable the explicit definition of the CA for this
+    # organization.  This entry is a Spec.  See "Specs" section below for details.
+    # ---------------------------------------------------------------------------
+    CA:
+       Hostname: ca # implicitly ca.org1.example.com
+       Country: BR
+       Province: DF
+       Locality: Brasilia
+       OrganizationalUnit: Superior Tibunal de Justica
+       StreetAddress: RUA A # default nil
+       PostalCode: 29000 # default nil
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1
+  - Name: TJ-SE
+    Domain: tj-se.smartsign.app
+    CA:
+       Hostname: ca # implicitly ca.org1.example.com
+       Country: BR
+       Province: SE
+       Locality: Aracaju
+       OrganizationalUnit: Tribunal de Justica de Sergipe
+       StreetAddress: RUA B # default nil
+       PostalCode: 49000 # default nil
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1
+  - Name: TJ-SP
+    Domain: tj-sp.smartsign.app
+    CA:
+       Hostname: ca # implicitly ca.org1.example.com
+       Country: BR
+       Province: SP
+       Locality: Sao Paulo
+       OrganizationalUnit: Tribunal de Justica de Sao Paulo
+       StreetAddress: RUA C # default nil
+       PostalCode: 11000 # default nil
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1
+  - Name: TJ-BA
+    Domain: tj-ba.smartsign.app
+    CA:
+       Hostname: ca # implicitly ca.org1.example.com
+       Country: BR
+       Province: BA
+       Locality: Salvador
+       OrganizationalUnit: Tribunal de Justica da Bahia
+       StreetAddress: RUA D # default nil
+       PostalCode: 31000 # default nil
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1

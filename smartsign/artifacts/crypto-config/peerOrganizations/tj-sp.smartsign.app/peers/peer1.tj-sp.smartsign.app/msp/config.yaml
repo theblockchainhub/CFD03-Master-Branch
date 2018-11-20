@@ -1,0 +1,8 @@
+NodeOUs:
+  Enable: true
+  ClientOUIdentifier:
+    Certificate: cacerts/ca.tj-sp.smartsign.app-cert.pem
+    OrganizationalUnitIdentifier: client
+  PeerOUIdentifier:
+    Certificate: cacerts/ca.tj-sp.smartsign.app-cert.pem
+    OrganizationalUnitIdentifier: peer
