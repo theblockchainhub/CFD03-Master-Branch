@@ -5,7 +5,7 @@ About project...
 Paulo Corcino
 
 ## Network Diagram
-![Network Diagram](/smartsign/images/network.png)
+<span style="display:block;text-align:center">![Network Diagram](/smartsign/images/network.png)</span>
 
 ## Setup
 
