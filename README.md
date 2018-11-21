@@ -1,9 +1,6 @@
 # CFD03 Project - Smartsign
 
-Smartsign é um pequeno prototipo para emissão de selos de autenticidade dital emitidos pelos Tribunais de Justiça estaduais para serem utilizados nos cartórios para garantir a autencidade de documentos.
-Este projeto não tem nenhuma ligação com os orgãos publicos aqui citados, restrigindo apenas como um estudo de caso para aprendizado da tecnologia Hyperledger.
-
-
+Smartsign is a small prototype for the issuance of stamps of digital authenticity issued by the state Courts of Justice to be used in the notaries to guarantee the authenticity of documents. This project has no connection with the governmental organizations cited here, restricting only as a case study for learning Hyperledger technology.
 
 ## Team Builder
 Paulo Corcino
@@ -74,10 +71,6 @@ Create Channel Files
 ```
 ./netup.sh down
 ```
-
-
-
-
 
 ## Chaincode
 In develepoment...
