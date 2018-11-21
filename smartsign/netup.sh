@@ -237,7 +237,7 @@ case $1 in
    "down") 
         networkDown
         ;;
-    "startch")
+    "startCH")
         startChannel
         ;;
    "generateTX") 
