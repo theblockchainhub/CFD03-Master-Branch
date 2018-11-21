@@ -4,8 +4,8 @@ About project...
 ## Team Builder
 Paulo Corcino
 
-## Network Design
-..
+## Network Diagram
+![Network Diagram](/images/network.png)
 
 ## Setup
 
