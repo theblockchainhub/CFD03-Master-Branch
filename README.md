@@ -96,5 +96,5 @@ appendClaim <userID> <claimType> <claimValue> <submitOrganization> <expirationDa
 For testing purpose, run the following command to query all the claims.
 
 ```bash
-./scripts/queryAllClaims.sh'
+./scripts/queryAllClaims.sh
 ```
