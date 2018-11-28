@@ -1,8 +1,8 @@
 [//]: # (SPDX-License-Identifier: CC-BY-4.0)
 
-# CFDev Capstone Project: Credo
+# CFDev Capstone Project: CREDO
 
-The Credo uses  Hyperledger Fabric to manage user claims between users and organizations. Some of the user cases are:
+The CREDOR Project uses  Hyperledger Fabric to manage user claims between users and organizations. Some of the user cases are:
 
 1. As organizations, they can create user claims, so that other organization can verify
 2. As users, they can sign claims submitted by an organization, so that the claims are ready for other orgnanzation to verify
