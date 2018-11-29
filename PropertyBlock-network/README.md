@@ -6,7 +6,7 @@ Michael Lusignan
 Pratik Patil
 Sandip Prashar
 
-> This is a project for CFDev 03 at The Blockchain Hub, at York University Lassdone Professional Development, Lassonde School of Engineering.
+> This is a project for CFDev 03 at The Blockchain Hub, at York University Lassonde Professional Development, Lassonde School of Engineering.
 > Digital Property Network is a platform for users to digital exchange the property ownership over a hyperledger smart contract network.
 > This Defines a business network where house sellers can list their properties for sale.
 
