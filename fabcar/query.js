@@ -50,7 +50,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	}
 
 	// queryMercahnt chaincode function - requires 1 argument, ex: args: ['MERCHANT1'],
-	// queryAllMercahnts chaincode function - requires no arguments , ex: args: [''],
+	// queryAllMerchants chaincode function - requires no arguments , ex: args: [''],
 	// queryMercahntByName chaincode function - requires 1 argument, ex: args: ['Hank'],
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
