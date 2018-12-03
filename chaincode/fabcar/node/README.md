@@ -1,46 +1,54 @@
-<<<<<<< HEAD
-![alt text](https://i.imgur.com/gyhzFx1.jpg)
 
-#CFD03 Project - Hyperledger Bazaar (HLB)
+
+#Functions Breakdown
 -----
-Hyper Ledger Bazaar (HLB) is a network designed as a global marketplace for merchants to trade and transact with organizations. The network focus is primarily to create a central hub for global trade. With increase adoption, ranging from raw materials to finished goods, the network can be leveraged as a economic analyses tool gaining real time insight into demand, supply and price elasticity of the materials or good.
+### InitLedger
 
-For proof of concept and demonstrative purposes, the current state of HLB is limited to minimum Client and Peer nodes with one Organization able to view and transact with merchants selling Fruit. In this example, each merchant is limited to selling one type of fruit. However, the market is subject to constant changes in demand, and the prices of the fruit will increase as the demand grows!
+Adds 4 merchants to the ledger. Each merchant has a key (iterated from 0->3) and 5 fields. Fields are as follows: names (name of merchant), money (amount of money merchant possesses), fruitType (the fruit that the merchant sells), fruitAmount(amount of the fruit which is held by the merchant), fruitPrice (the current market valuation of the price of the fruit), and initial amount (initial amount of fruit possessed  used later for re-valuation of fruit).
 
-##Team Members
+
 -----
-Roman Dombrovski and Reza Alibhai
 
-##Network Overview
+## Query
+
+### queryMerchant
+#Arguments: 1
+Argument Type: Merchant key 
+
+Allows one key argument to be passed in (e.g. ‘MERCHANT1’) 
+Gets state for merchant and ensures that state is not blank, then returns state value. 
+
+### queryMerchantByName
+#Arguments: 1
+Argument Type : Merchant.names value 
+Allows one value argument to be passed in, which will be name value (e.g. ‘Hank’)
+Loops through all states to see how many valid states exist in ledger currently (see queryAllMerchants). 
+During loop compares name argument to name value of Merchant from JSON-parsed format. 
+If the name value matches, then returns the merchant corresponding to current merchant key.
+
+### queryAllMerchants
+#Arguments: 0
+Iterates through all Merchant keys, parses the values of each, adds to new JSON and pushes them to an array ‘allResults’. The array is converted to Buffer and returned. 
+
 -----
-![alt text](https://i.imgur.com/GXM3dzm.jpg)
+## Invoke 
 
-##Chaincode Overview
------
-Smart Contracts within the Hyperledger Bazaar network are designed to record transactions between Merchants and Organizations.
+### addNewMerchant
+#Arguments: 5
+Argument Type: Merchant.names value,  Merchant.money value, Merchant.fruitType value, Merchant.fruitAmount value, Merchant.fruitPrice value
+Loops through all iterations of valid merchant states and adds them to list of total merchants. The length of the list is then appended to string ‘MERCHANT’ which is used as a key for the values of the merchant passed in as arguments.
 
-The chaincode parameters include;
+### sellOneFruit
+#Arguments: 1
+Argument Type : Merchant key
+Gets merchant state from passed in key and parses into JSON format. Checks if merchant has enough fruit to sell, otherwise throws error. If fruit quantity is sufficient, removes 1 from fruitAmount and adds to money based on value of fruit sold.  If the amount of fruit reaches half of initialAmount, then initialAmount changes to current fruitAmount and fruitPrice increases by 1. This last functionality is to model the addition of value to resources as they become scarce in the marketplace.
 
-Participant - ```Merchant Name`` | ```Organization Name```
+### sellMultipleFruits
+#Arguments: 2
+Argument Type: Merchant key, amount of fruit to be sold 
+Similar to sellOneFruit, obtains merchant state and parses into JSON. After checking for sufficient quantity, subtracts from fruitAmount the argument of fruit sold. Adds to money the product of fruitPrice and amount sold. After transaction, checks if fruitAmount falls beneath half of initialAmount. If so, changes initialAmount to fruitAmount and adds 1 to fruitPrice.
 
-Asset - ```Product```
-
-Transaction - | ```Amount (Volume)``` | ```Price```
-
-
-##Future Plans and Timeline Overview
------
-Ambitiously, Hyperledger Bazaar aims to be the central hub for global trade. This means working with multinational corporations and as well as government organizations. Working close together in order to understand their needs and adapt the Network to drive onboarding and adoption of the platform.
-
-As the network grows and adapts to the complexities of all industries the aim is have a network that is flexible and for that the chaincode and database capabilities are not limited to what is currently available. As the capabilities of the network grow, it will no longer be necessary to manage the changes by a central authority, and peers will be allowed to interact with each other directly. Such permissions will be given to the merchants upon entering the network. 
-
-Every day that goes by, there is change and there are those that can adapt and those that fall behind. By creating a trust-based system of open communication and a publicly available ledger accessible by all, merchants can feel confident conducting trade in the marketplace. Hyperledger Bazaar is the solution for an evolving world ready to adapt and overcome all obstacles the future brings us.
-
-
-##License
------
-Hyperledger Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Hyperledger Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.
-
-=======
-
->>>>>>> f208b52cbf6a846bcc43d1389bef4b560dd03a2e
+###  changeStallOwner
+#Arguments: 2
+Argument Type: Merchant key, name of new stall owner
+Gets state of merchant based on key and changes Merchant.names value to what name argument is passed in along with key.
