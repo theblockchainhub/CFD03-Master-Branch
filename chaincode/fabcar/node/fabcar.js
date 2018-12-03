@@ -133,14 +133,16 @@ let Chaincode = class {
   }
 
   async queryMerchantByName (stub, args){
-    if (args.length != 1) {
-      throw new Error ('Incorrect number of arguments. Expecting Merchant name ex: "Hank"');
+	if (args.length != 1) {
+      throw new Error ('Incorrect number of arguments. Expecting Merchant # ex: MERCHANT01');
     }
+
     let merchantName = args[0];
     let realMerchN;
     let merchantNum;
     let merchantAsBytes;
     let merchant;
+
     let iterator = await stub.getStateByRange('MERCHANT0', 'MERCHANT999');
 
     let allResults = [];
@@ -148,33 +150,21 @@ let Chaincode = class {
       let res = await iterator.next();
 
       if (res.value && res.value.value.toString()) {
-        let jsonRes = {};
-        jsonRes.Key = res.value.key;
-        allResults.push(jsonRes);
+        merchantNum = res.value.key;
+        merchantAsBytes = await stub.getState(merchantNum);
+        merchant = JSON.parse(merchantAsBytes);
+        if (merchant.names == merchantName){
+          let realMerchant = await stub.getState(merchantNum);
+          console.log(realMerchant.toString());
+          return realMerchant
       }
       if (res.done) {
-        await iterator.close();
-       let totalMerchants = allResults.length;
+       await iterator.close();
     }
-
-    for (var i=0; i<totalMerchants; i++){
-      merchantNum = "MERCHANT" + String(i);
-      merchantAsBytes = await stub.getState(merchantNum);
-      merchant = JSON.parse(merchantAsBytes);
-
-      if (merchant.names == merchantName){
-        realMerchN = merchantNum;
-      }
-    }
-
-    let realMerchant = await stub.getState(realMerchN);
-    if (!realMerchant || realMerchant.toString().length <=0){
-      throw new Error (realMerchN + ' does not exist ');
-    }
-
-    console.log(realMerchant.toString());
-    return realMerchant;
+    return "No Such Merchant";
+   }
   }
+
 }
 
   
@@ -263,9 +253,9 @@ let Chaincode = class {
     let merchantAsBytes = await stub.getState(args[0]);
     let merchant = JSON.parse(merchantAsBytes);
 
-    let numberSold = args[1];
+    let numberSold = parseInt(args[1]);
 
-    if (merchant.fruitAmount <= String(numbersold-1)){
+    if (parseInt(merchant.fruitAmount) <= (numberSold-1)){
         throw new Error ("Cannot sell this amount of fruit. Not enough fruit owned.");
     }
     else{
@@ -280,6 +270,7 @@ let Chaincode = class {
 
     await stub.putState(args[0], Buffer.from(JSON.stringify(merchant)));
     console.info('============= END : sellMultipleFruits ===========');
+
   }  
 
   async changeStallOwner(stub, args){
